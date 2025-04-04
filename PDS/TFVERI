@@ -1,0 +1,41 @@
+         MACRO
+         TFVERI &BITS,&KW,&TXT
+.*********************************************************************
+.*
+.*    TFVERI - INTERNAL MACRO USED BY MAP3270
+.*           VERIFIES YES/NO PARMS
+.*
+.* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.*                                                                  **
+.* MAP3270 V2.2.0 - SOFTWARE PACKAGE TO IMPLEMENT FULL SCREEN       **
+.* IO FOR IBM 3270 CLASS TERMINALS.                                 **
+.*                                                                  **
+.*             COPYRIGHT (C) 2021  EDWARD G LISS                    **
+.*                     EGLISS4024@GMAIL.COM                         **
+.*                                                                  **
+.* THIS PROGRAM IS FREE SOFTWARE: YOU CAN REDISTRIBUTE IT           **
+.* AND/OR MODIFY IT UNDER THE TERMS OF THE GNU GENERAL PUBLIC       **
+.* LICENSE AS PUBLISHED BY THE FREE SOFTWARE FOUNDATION,            **
+.* EITHER VERSION 3 OF THE LICENSE, OR ANY LATER VERSION.           **
+.*                                                                  **
+.* THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE          **
+.* USEFUL, BUT WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED       **
+.* WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR          **
+.* PURPOSE.  SEE THE GNU GENERAL PUBLIC LICENSE FOR MORE            **
+.* DETAILS.                                                         **
+.*                                                                  **
+.* PLEASE SEE HTTPS://WWW.GNU.ORG/LICENSES/ FOR A COPY OF THE       **
+.* GNU GENERAL PUBLIC LICENSE.                                      **
+.*                                                                  **
+.*********************************************************************
+         GBLA  &WCC
+.*
+         AIF   (T'&KW EQ 'O').ERR
+         AIF   ('&KW' EQ 'NO').NO
+         AIF   ('&KW' EQ 'YES').YES
+.ERR     MNOTE 12,'*** &TXT MUST BE YES OR NO ***'
+         MEXIT
+.YES     ANOP
+&WCC     SETA  &WCC+&BITS
+.NO      ANOP
+         MEND
